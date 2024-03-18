@@ -8,7 +8,19 @@
 </head>
 <body>
     <div class="chat-container">
-        <div id="chat-window" class="chat-window"></div>
+        <div id="chat-window" class="chat-window">
+            <!-- Пример сообщения пользователя -->
+            <div class="chat-message user-message">
+                <img src="path_to_user_avatar.jpg" alt="User Avatar" class="avatar">
+                <div class="message-content">Привет! Как твой день?</div>
+            </div>
+
+            <!-- Пример сообщения бота -->
+            <div class="chat-message bot-message">
+                <img src="path_to_bot_avatar.jpg" alt="Bot Avatar" class="avatar">
+                <div class="message-content">Все отлично, спасибо что спросил!</div>
+            </div>
+        </div>
         <form id="chat-form" class="chat-form">
             <input type="text" id="chat-input" placeholder="Введите ваше сообщение..." autocomplete="off"/>
             <button type="submit">Отправить</button>
