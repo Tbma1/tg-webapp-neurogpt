@@ -4,13 +4,15 @@ function sendMessage() {
     var userText = userInput.value.trim();
 
     if (userText !== "") {
-        // Показываем сообщение пользователя в чате
+        // Добавление сообщения пользователя в чат
         var userMessage = document.createElement("div");
-        userMessage.textContent = "Вы: " + userText;
+        userMessage.classList.add("message", "user-message");
+        userMessage.textContent = userText;
         chatBox.appendChild(userMessage);
 
-        // Здесь вы можете добавить интеграцию с ChatGPT или любой другой логикой
+        // Здесь вы можете добавить логику для получения ответа от ChatGPT или другой логики
 
-        userInput.value = ""; // Очищаем поле ввода
+        userInput.value = ""; // Очистка поля ввода
+        chatBox.scrollTop = chatBox.scrollHeight; // Прокрутка к последнему сообщению
     }
 }
