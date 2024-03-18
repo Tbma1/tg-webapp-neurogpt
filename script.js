@@ -1,21 +1,32 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with ChatGPT</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="chat-window">
-        <div id="chat-box" class="chat-box"></div>
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="Напишите что-нибудь..." autofocus>
-            <div id="send-button">
-                <img src="arrow_up_icon.png" alt="Send">
-            </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+document.addEventListener('DOMContentLoaded', function() {
+    const chatWindow = document.getElementById('chat-window');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+
+    // Инициализация Telegram WebApp
+    Telegram.WebApp.ready();
+
+    chatForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const messageText = chatInput.value.trim();
+        if (messageText) {
+            displayMessage(messageText, 'user-message');
+            chatInput.value = '';
+
+            // Здесь может быть логика для отправки сообщения боту и получения ответа
+            // Предположим, что ответ бота - это эхо наше сообщение
+            setTimeout(() => {
+                displayMessage(messageText, 'bot-message');
+            }, 500); // Имитация задержки ответа бота
+        }
+    });
+
+    function displayMessage(text, className) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('chat-message', className);
+        messageElement.textContent = text;
+        chatWindow.appendChild(messageElement);
+        chatWindow.scrollTop = chatWindow.scrollHeight; // Прокрутка к последнему сообщению
+    }
+});
