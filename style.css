@@ -1,6 +1,5 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
     margin: 0;
     padding: 20px;
     display: flex;
@@ -11,19 +10,19 @@ body {
 
 .chat-window {
     width: 100%;
-    max-width: 600px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    border: 1px solid #e3e3e3;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between; /* Убедитесь, что контент распределяется по вертикали */
     overflow: hidden;
+    height: 90vh; /* Установите фиксированную высоту для окна чата */
 }
 
 .chat-box {
-    flex-grow: 1;
-    padding: 20px;
     overflow-y: auto;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -32,31 +31,48 @@ body {
 .input-area {
     display: flex;
     padding: 10px;
-    border-top: 1px solid #e9ecef;
-    background-color: #f8f9fa;
+    margin-top: auto; /* Автоматически сдвигает область ввода вниз */
 }
+
 
 #user-input {
     flex-grow: 1;
     padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 20px;
+    border: 1px solid #d8d8d8;
+    border-radius: 10px; /* Задаем радиус скругления */
     margin-right: 10px;
     outline: none;
+}
+#send-button {
+    width: 40px;
+    height: 40px;
+    background-color: #0088cc; /* Цвет фона кнопки */
+    border-radius: 10px; /* Задаем радиус скругления */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+#send-button img {
+    width: 20px; /* Размер изображения */
+    height: 20px;
+    filter: invert(1); /* Инвертируем цвет иконки */
 }
 
 button {
     padding: 10px 20px;
     border: none;
     border-radius: 20px;
-    background-color: #007bff;
+    background-color: #0088cc; /* Характерный синий цвет Telegram для кнопки */
     color: white;
     cursor: pointer;
     outline: none;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #0077b5; /* Немного более темный синий при наведении */
 }
 
 .message {
@@ -67,12 +83,12 @@ button:hover {
 
 .user-message {
     align-self: flex-end;
-    background-color: #007bff;
+    background-color: #0088cc; /* Сообщения пользователя в синем цвете */
     color: white;
 }
 
 .bot-message {
     align-self: flex-start;
-    background-color: #e9ecef;
+    background-color: #f0f0f0; /* Сообщения бота в более светлом цвете */
     color: black;
 }
