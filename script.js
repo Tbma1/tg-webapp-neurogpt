@@ -1,32 +1,39 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const chatWindow = document.getElementById('chat-window');
-    const chatForm = document.getElementById('chat-form');
-    const chatInput = document.getElementById('chat-input');
+document.getElementById('chat-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Предотвращаем стандартную отправку формы
 
-    // Инициализация Telegram WebApp
-    Telegram.WebApp.ready();
+    const input = document.getElementById('chat-input');
+    const message = input.value.trim();
 
-    chatForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+    if (message) {
+        // Добавление сообщения пользователя в чат
+        addMessageToChat('user', message);
 
-        const messageText = chatInput.value.trim();
-        if (messageText) {
-            displayMessage(messageText, 'user-message');
-            chatInput.value = '';
-
-            // Здесь может быть логика для отправки сообщения боту и получения ответа
-            // Предположим, что ответ бота - это эхо наше сообщение
-            setTimeout(() => {
-                displayMessage(messageText, 'bot-message');
-            }, 500); // Имитация задержки ответа бота
-        }
-    });
-
-    function displayMessage(text, className) {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('chat-message', className);
-        messageElement.textContent = text;
-        chatWindow.appendChild(messageElement);
-        chatWindow.scrollTop = chatWindow.scrollHeight; // Прокрутка к последнему сообщению
+        // Имитация ответа бота через 1 секунду
+        setTimeout(() => {
+            addMessageToChat('bot', 'Это автоматический ответ бота на ваше сообщение.');
+        }, 1000);
     }
+
+    input.value = ''; // Очищаем поле ввода после отправки
 });
+
+function addMessageToChat(sender, messageText) {
+    const chatWindow = document.getElementById('chat-window');
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('chat-message', `${sender}-message`);
+
+    const avatarElement = document.createElement('img');
+    avatarElement.src = sender === 'user' ? 'path_to_user_avatar.jpg' : 'path_to_bot_avatar.jpg';
+    avatarElement.alt = `${sender} Avatar`;
+    avatarElement.classList.add('avatar');
+
+    const contentElement = document.createElement('div');
+    contentElement.classList.add('message-content');
+    contentElement.textContent = messageText;
+
+    messageElement.appendChild(avatarElement);
+    messageElement.appendChild(contentElement);
+
+    chatWindow.appendChild(messageElement);
+    chatWindow.scrollTop = chatWindow.scrollHeight; // Прокрутка чата к последнему сообщению
+}
