@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatGPT Dialog Window</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Minimalist Clothing Store</title>
+    <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
-    <div class="chat-container">
-        <div id="chat-window" class="chat-window">
-            <!-- Пример сообщения пользователя -->
-            <div class="chat-message user-message">
-                <img src="path_to_user_avatar.jpg" alt="User Avatar" class="avatar">
-                <div class="message-content">Привет! Как твой день?</div>
-            </div>
 
-            <!-- Пример сообщения бота -->
-            <div class="chat-message bot-message">
-                <img src="path_to_bot_avatar.jpg" alt="Bot Avatar" class="avatar">
-                <div class="message-content">Все отлично, спасибо что спросил!</div>
-            </div>
+<header>
+    <div class="logo">Minimalist Clothing</div>
+</header>
+
+<main>
+    <div class="product-container">
+        <div class="product">
+            <img src="black-shirt.jpg" alt="Black Shirt">
+            <div class="product-name">Black Shirt</div>
+            <button class="buy-button">Buy Now</button>
         </div>
-        <form id="chat-form" class="chat-form">
-            <input type="text" id="chat-input" placeholder="Введите ваше сообщение..." autocomplete="off"/>
-            <button type="submit">Отправить</button>
-        </form>
+        <div class="product">
+            <img src="white-shirt.jpg" alt="White Shirt">
+            <div class="product-name">White Shirt</div>
+            <button class="buy-button">Buy Now</button>
+        </div>
     </div>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="script.js"></script>
+</main>
+
+<footer>
+    © 2024 Minimalist Clothing Store
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
