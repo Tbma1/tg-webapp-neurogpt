@@ -1,36 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimalist Clothing Store</title>
-    <link rel="stylesheet" href="Styles.css">
+    <title>Рисование на картинке</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header>
-    <div class="logo">Minimalist Clothing</div>
-</header>
-
-<main>
-    <div class="product-container">
-        <div class="product">
-            <img src="black-shirt.jpg" alt="Black Shirt">
-            <div class="product-name">Black Shirt</div>
-            <button class="buy-button">Buy Now</button>
-        </div>
-        <div class="product">
-            <img src="white-shirt.jpg" alt="White Shirt">
-            <div class="product-name">White Shirt</div>
-            <button class="buy-button">Buy Now</button>
-        </div>
-    </div>
-</main>
-
-<footer>
-    © 2024 Minimalist Clothing Store
-</footer>
-
-<script src="script.js"></script>
+    <input type="file" id="imageLoader" name="imageLoader"/>
+    <canvas id="imageCanvas"></canvas>
+    <script src="app.js"></script>
 </body>
 </html>
