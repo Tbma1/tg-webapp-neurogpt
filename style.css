@@ -9,7 +9,16 @@ body {
 }
 
 .upload-container {
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* Увеличиваем расстояние между кнопкой и canvas */
+}
+
+canvas {
+    border: 2px solid #000;
+    cursor: crosshair;
+    background-color: #fff;
+    min-width: 300px;
+    min-height: 200px;
+    margin-top: 20px; /* Добавляем отступ сверху для canvas */
 }
 
 .upload-button {
