@@ -1,24 +1,20 @@
-body {
-    font-family: Arial, sans-serif;
+body, html {
+    width: 100%;
+    height: 100%;
     margin: 0;
-    background-color: #f7f7f7;
+    padding: 0;
+    background-color: transparent; /* Прозрачный фон */
+    color: #000; /* Цвет текста */
+    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 20px;
+    justify-content: center;
 }
 
 .upload-container {
-    margin-bottom: 30px; /* Увеличиваем расстояние между кнопкой и canvas */
-}
-
-canvas {
-    border: 2px solid #000;
-    cursor: crosshair;
-    background-color: #fff;
-    min-width: 300px;
-    min-height: 200px;
-    margin-top: 20px; /* Добавляем отступ сверху для canvas */
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .upload-button {
@@ -29,30 +25,22 @@ canvas {
 
 .upload-label {
     display: inline-block;
-    background-color: #000;
+    background-color: #4a76a8; /* Синий цвет в стиле Telegram */
     color: #fff;
     padding: 10px 20px;
-    font-size: 14px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .upload-label:hover {
-    background-color: #333;
+    background-color: #357ab8; /* Темнее при наведении */
 }
 
 canvas {
-    border: 2px solid #000;
+    border: 1px solid #ccc; /* Светлая рамка для видимости на прозрачном фоне */
     cursor: crosshair;
-    background-color: #fff;
-    /* Установим начальные размеры для canvas, чтобы он был видимым до загрузки изображения */
-    min-width: 300px;
-    min-height: 200px;
-}
-
-.hidden {
-    display: none;
+    margin-top: 20px; /* Отступ от кнопки загрузки */
 }
 
 .scrollToTopButton {
@@ -64,9 +52,13 @@ canvas {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 20px;
+    margin-top: 20px; /* Отступ от канваса */
 }
 
 .scrollToTopButton:hover {
     background-color: #333;
+}
+
+.hidden {
+    display: none; /* Скрыть элементы, не нужные сразу при загрузке страницы */
 }
