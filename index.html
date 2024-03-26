@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рисование на картинке</title>
+    <title>Рисование на картинке в Telegram WebApp</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <div class="upload-container">
-        <input type="file" id="imageLoader" name="imageLoader" class="upload-button"/>
-        <label for="imageLoader" class="upload-label">Выберите файл</label>
+        <button id="uploadLabel" class="upload-label">Выберите изображение</button>
     </div>
     <canvas id="imageCanvas"></canvas>
-    <button id="scrollToTopButton" class="scrollToTopButton hidden">Наверх</button>
     <script src="app.js"></script>
 </body>
 </html>
