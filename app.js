@@ -15,6 +15,7 @@ function handleImage(e){
             canvas.height = img.height;
             ctx.drawImage(img, 0, 0);
             canvas.classList.remove('hidden'); // Показываем canvas
+            scrollToTopButton.classList.remove('hidden'); // Показываем кнопку "Наверх"
         }
         img.src = event.target.result;
     }
@@ -34,4 +35,9 @@ canvas.addEventListener('mousemove', (e) => {
     }
 });
 
-canvas.addEventListener('mouseup',
+canvas.addEventListener('mouseup', (e) => {
+    if (isDrawing === true) {
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+        ctx.closePath();
+        isDrawing = false
