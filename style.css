@@ -9,18 +9,21 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Изменено с center на flex-start для размещения содержимого вверху */
 }
 
 .upload-container {
     margin-top: 20px;
-    margin-bottom: 20px;
+    position: relative; /* Добавлено для абсолютного позиционирования .upload-button относительно этого контейнера */
 }
 
 .upload-button {
     opacity: 0;
     position: absolute;
     z-index: -1;
+    width: 100%; /* Добавлено для расширения кликабельной области до всей ширины .upload-label */
+    height: 100%; /* Добавлено для расширения кликабельной области до всей высоты .upload-label */
+    cursor: pointer; /* Добавлено для отображения курсора в виде руки при наведении на label */
 }
 
 .upload-label {
@@ -31,6 +34,7 @@ body, html {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    border: none; /* Убрана обводка */
 }
 
 .upload-label:hover {
