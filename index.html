@@ -7,8 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input type="file" id="imageLoader" name="imageLoader"/>
-    <canvas id="imageCanvas"></canvas>
+    <div class="upload-container">
+        <input type="file" id="imageLoader" name="imageLoader" class="upload-button"/>
+        <label for="imageLoader" class="upload-label">Выберите файл</label>
+    </div>
+    <canvas id="imageCanvas" class="hidden"></canvas>
     <script src="app.js"></script>
 </body>
 </html>
