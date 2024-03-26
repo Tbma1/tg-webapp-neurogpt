@@ -1,29 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Проверяем, загружено ли WebApp API
-    if (window.Telegram.WebApp) {
-        // Инициализация WebApp
-        Telegram.WebApp.ready();
-    }
+    const imageLoader = document.getElementById('imageLoader');
+    const canvas = document.getElementById('imageCanvas');
+    const ctx = canvas.getContext('2d');
 
-    document.getElementById('uploadLabel').addEventListener('click', function() {
-        // Запрос изображения через Telegram WebApp
-        Telegram.WebApp.openAttachmentMenu('image');
-    });
+    imageLoader.addEventListener('change', function(event) {
+        const file = event.target.files[0]; // Получаем файл из input
+        const reader = new FileReader();
 
-    // Обработка полученного изображения
-    Telegram.WebApp.onEvent('attachmentMenuClosed', function(event) {
-        const photo = event.photo; // Получаем фото
-        if (photo) {
-            // Преобразуем полученное изображение для отображения на canvas
-            const img = new Image();
+        reader.onload = function(e) {
+            const img = new Image(); // Создаем новый объект изображения
             img.onload = function() {
-                const canvas = document.getElementById('imageCanvas');
-                const ctx = canvas.getContext('2d');
+                // Устанавливаем размер canvas равным размеру изображения
                 canvas.width = img.width;
                 canvas.height = img.height;
-                ctx.drawImage(img, 0, 0);
+                ctx.drawImage(img, 0, 0); // Отрисовываем изображение на canvas
             };
-            img.src = photo.fileUrl; // Устанавливаем URL изображения
-        }
+            img.src = e.target.result; // Устанавливаем источник изображения как результат чтения файла
+        };
+
+        reader.readAsDataURL(file); // Читаем файл как Data URL
     });
 });
