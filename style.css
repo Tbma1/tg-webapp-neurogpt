@@ -4,46 +4,63 @@ body, html {
     margin: 0;
     padding: 0;
     background-color: transparent; /* Прозрачный фон */
-    color: #000; /* Цвет текста */
+    color: #000; /* Цвет текста для контраста на прозрачном фоне */
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Элементы начинаются с верха страницы */
+    justify-content: flex-start; /* Выравнивание контента вверху страницы */
 }
 
 .upload-container {
-    margin-top: 20px;
+    margin-top: 20px; /* Отступ сверху для контейнера загрузки */
+    position: relative; /* Позиционирование относительно для абсолютно позиционированного input */
 }
 
 .upload-button {
-    opacity: 0;
+    opacity: 0; /* Скрытие кнопки, но она остаётся функциональной */
     position: absolute;
-    z-index: -1;
+    width: 100%; /* Растягиваем на всю ширину label для увеличения кликабельной области */
+    height: 100%; /* Растягиваем на всю высоту label */
+    z-index: 2; /* Убеждаемся, что input находится над label и может захватить клик */
+    cursor: pointer; /* Изменение курсора при наведении для индикации кликабельности */
 }
 
 .upload-label {
     display: inline-block;
-    background-color: #4a76a8; /* Синий цвет, характерный для стиля OpenAI */
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none; /* Убираем подчеркивание текста */
-    border: none; /* Убираем стандартную обводку */
+    background-color: #4a76a8; /* Синий цвет, характерный для дизайна OpenAI */
+    color: #fff; /* Белый текст для контраста */
+    padding: 10px 20px; /* Отступы внутри label для размера и формы */
+    border-radius: 5px; /* Скругление углов для современного вида */
+    cursor: pointer; /* Изменение курсора при наведении для индикации кликабельности */
+    transition: background-color 0.3s; /* Плавное изменение цвета при наведении */
+    text-decoration: none; /* Убрать подчеркивание текста, если label используется как ссылка */
+    position: relative; /* Позиционирование для корректной работы с абсолютно позиционированным input */
+    z-index: 1; /* Убеждаемся, что label находится под input */
 }
 
 .upload-label:hover {
-    background-color: #357ab8; /* Слегка затемняем цвет при наведении для визуального эффекта */
+    background-color: #357ab8; /* Затемнение фона при наведении для визуального отклика */
 }
 
 canvas {
-    border: 1px solid #ccc; /* Легкая обводка вокруг canvas для визуального отделения */
-    cursor: crosshair;
-    margin-top: 20px; /* Добавляем отступ сверху для разделения элементов */
+    border: 1px solid #ccc; /* Светлая рамка для визуального выделения canvas */
+    cursor: crosshair; /* Курсор в виде перекрестия для интуитивного указания на возможность рисования */
+    margin-top: 20px; /* Отступ сверху для разделения элементов */
 }
 
 .scrollToTopButton {
-    display: none; /* Скрываем кнопку 'Наверх', так как она не упомянута в текущем контексте */
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #000;
+    border: none; /* Убираем стандартную рамку */
+    border-radius: 5px; /* Скругление углов для современного вида */
+    cursor: pointer; /* Изменение курсора при наведении для индикации кликабельности */
+    transition: background-color 0.3s; /* Плавное изменение цвета при наведении */
+    margin-top: 20px; /* Отступ сверху от canvas */
+    display: none; /* Изначально скрыта, появляется только при необходимости */
 }
+
+.scrollToTopButton:hover {
+    background-color: #333; /* Затемнение фона при наведении для визуального отклика */
