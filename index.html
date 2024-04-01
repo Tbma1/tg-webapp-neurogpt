@@ -1,18 +1,140 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рисование на картинке в Telegram WebApp</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Telegram Style Image Editor</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            background-color: rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .app-container {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            background: #f7f7f7;
+        }
+
+        .toolbar {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .toolbar input[type="file"] {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #2aabe1;
+            color: white;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .toolbar input[type="range"], .toolbar input[type="color"] {
+            cursor: pointer;
+        }
+
+        canvas {
+            border: 1px solid #000;
+            cursor: crosshair;
+        }
+    </style>
 </head>
 <body>
- <div class="upload-container">
-    <input type="file" id="imageLoader" name="imageLoader" class="upload-button">
-    <label for="imageLoader" class="upload-label">Выберите изображение</label>
-</div>
-<canvas id="imageCanvas"></canvas>
-    <script src="app.js"></script>
+    <div class="app-container">
+        <div class="toolbar">
+            <input type="file" id="image-loader" accept="image/*">
+            <label for="brush-size">Brush Size:</label>
+            <input type="range" id="brush-size" min="1" max="50" value="5">
+            <label for="brush-color">Brush Color:</label>
+            <input type="color" id="brush-color" value="#000000">
+        </div>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Telegram.WebApp.ready();
+
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            const brushSizeInput = document.getElementById('brush-size');
+            const brushColorInput = document.getElementById('brush-color');
+            const imageLoader = document.getElementById('image-loader');
+
+            canvas.width = Telegram.WebApp.viewportStableWidth;
+            canvas.height = Telegram.WebApp.viewportStableHeight - 100;
+
+            let painting = false;
+            let brushSize = brushSizeInput.value;
+            let brushColor = brushColorInput.value;
+
+            function startPosition(e) {
+                painting = true;
+                draw(e);
+            }
+
+            function finishedPosition() {
+                painting = false;
+                ctx.beginPath();
+            }
+
+            function draw(e) {
+                if (!painting) return;
+
+                ctx.lineWidth = brushSize;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = brushColor;
+
+                ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+            }
+
+            canvas.addEventListener('mousedown', startPosition);
+            canvas.addEventListener('mouseup', finishedPosition);
+            canvas.addEventListener('mousemove', draw);
+
+            brushSizeInput.addEventListener('change', (e) => {
+                brushSize = e.target.value;
+            });
+
+            brushColorInput.addEventListener('change', (e) => {
+                brushColor = e.target.value;
+            });
+
+            imageLoader.addEventListener('change', function(e) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = new Image();
+                    img.onload = function() {
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        ctx.drawImage(img, 0, 0);
+                    }
+                    img.src = event.target.result;
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            });
+
+            Telegram.WebApp.MainButton.show();
+            Telegram.WebApp.MainButton.setText("Save");
+            Telegram.WebApp.MainButton.onClick(() => {
+                Telegram.WebApp.close();
+            });
+        });
+    </script>
 </body>
 </html>
