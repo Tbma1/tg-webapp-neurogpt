@@ -26,6 +26,10 @@
             flex-direction: column;
             align-items: stretch;
             gap: 10px;
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
         }
 
         .btn {
@@ -45,27 +49,30 @@
 </head>
 <body>
     <canvas id="canvas"></canvas>
-    <div class="btn-container">
-        <input type="file" id="image-loader" accept="image/*" style="display: none;">
-        <button id="load-image" class="btn">Загрузить из галереи</button>
-        <button id="send-image" class="btn">Отправить в чат</button>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             Telegram.WebApp.ready();
 
-            const loadImageBtn = document.getElementById('load-image');
-            const sendImageBtn = document.getElementById('send-image');
-            const imageLoader = document.getElementById('image-loader');
-            const canvas = document.getElementById('canvas');
-            const ctx = canvas.getContext('2d');
-
-            canvas.width = 300; // Пример ширины холста
-            canvas.height = 150; // Пример высоты холста
-
+            const loadImageBtn = document.createElement('button');
+            loadImageBtn.textContent = 'Загрузить из галереи';
+            loadImageBtn.className = 'btn';
             loadImageBtn.addEventListener('click', () => imageLoader.click());
 
+            const sendImageBtn = document.createElement('button');
+            sendImageBtn.textContent = 'Отправить в чат';
+            sendImageBtn.className = 'btn';
+            sendImageBtn.addEventListener('click', () => {
+                canvas.toBlob((blob) => {
+                    Telegram.WebApp.sendData(blob);
+                }, 'image/png');
+            });
+
+            const imageLoader = document.createElement('input');
+            imageLoader.type = 'file';
+            imageLoader.id = 'image-loader';
+            imageLoader.accept = 'image/*';
+            imageLoader.style.display = 'none';
             imageLoader.addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 const reader = new FileReader();
@@ -85,11 +92,16 @@
                 }
             });
 
-            sendImageBtn.addEventListener('click', () => {
-                canvas.toBlob((blob) => {
-                    Telegram.WebApp.sendData(blob);
-                }, 'image/png');
-            });
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = 300; // Пример ширины холста
+            canvas.height = 150; // Пример высоты холста
+
+            const btnContainer = document.createElement('div');
+            btnContainer.className = 'btn-container';
+            btnContainer.appendChild(loadImageBtn);
+            btnContainer.appendChild(sendImageBtn);
+            document.body.appendChild(btnContainer);
         });
     </script>
 </body>
