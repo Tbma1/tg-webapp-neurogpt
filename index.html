@@ -20,30 +20,32 @@
             margin-bottom: 10px;
         }
 
+        .btn-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+        }
+
         .btn {
-            padding: 10px 20px;
-            margin: 5px;
+            padding: 10px 0;
             border: none;
             border-radius: 5px;
             background-color: #2aabe1;
             color: white;
             cursor: pointer;
+            width: 100%;
         }
 
         .btn:active {
             background-color: #2291c0;
         }
-
-        .toolbar {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
     </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
-    <div class="toolbar">
+    <div class="btn-container">
         <input type="file" id="image-loader" accept="image/*" style="display: none;">
         <button id="load-image" class="btn">Загрузить из галереи</button>
         <button id="send-image" class="btn">Отправить в чат</button>
