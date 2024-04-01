@@ -1,69 +1,38 @@
-body, html {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: transparent; /* Прозрачный фон */
-    color: #000; /* Цвет текста для контраста на прозрачном фоне */
-    font-family: Arial, sans-serif;
+body {
+    background-color: rgba(255, 255, 255, 0.5); /* Прозрачный фон */
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-start; /* Выравнивание контента вверху страницы */
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
 }
 
-.upload-container {
-    margin-top: auto; /* Устанавливаем верхний отступ auto, чтобы контейнер притягивался к низу */
-    margin-bottom: 20px; /* Добавляем небольшой отступ снизу */
-    order: 2; /* Порядок 2, чтобы поместить контейнер загрузки внизу */
+.app-container {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    background: #f7f7f7; /* Светлый фон для контента */
 }
 
-
-.upload-button {
-    opacity: 0; /* Скрытие кнопки, но она остаётся функциональной */
-    position: absolute;
-    width: 100%; /* Растягиваем на всю ширину label для увеличения кликабельной области */
-    height: 100%; /* Растягиваем на всю высоту label */
-    z-index: 2; /* Убеждаемся, что input находится над label и может захватить клик */
-    cursor: pointer; /* Изменение курсора при наведении для индикации кликабельности */
+.toolbar {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
-.upload-label {
+.toolbar input[type="file"] {
+    border: 1px solid #ccc;
     display: inline-block;
-    background-color: #4a76a8; /* Синий цвет, характерный для дизайна OpenAI */
-    color: #fff; /* Белый текст для контраста */
-    padding: 15px 30px; /* Увеличиваем отступы для изменения размера кнопки */
-    border-radius: 10px; /* Задаем скругление углов */
-    cursor: pointer; /* Изменение курсора при наведении для индикации кликабельности */
-    transition: background-color 0.3s; /* Плавное изменение цвета при наведении */
-    text-decoration: none; /* Убрать подчеркивание текста, если label используется как ссылка */
-    position: absolute; /* Абсолютное позиционирование для центрирования */
-    top: 50%; /* Располагаем верхний край кнопки на 50% от верхнего края родительского элемента */
-    left: 50%; /* Располагаем левый край кнопки на 50% от левого края родительского элемента */
-    transform: translate(-50%, -50%); /* Смещаем кнопку на 50% своей ширины и высоты влево и вверх, чтобы она оказалась точно по центру */
-}
-
-.upload-label:hover {
-    background-color: #357ab8; /* Затемнение фона при наведении для визуального отклика */
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #2aabe1;
+    color: white;
+    border-radius: 5px;
 }
 
 canvas {
-    margin-top: 20px; /* Отступ сверху для разделения элементов */
-    order: 1; /* Порядок 1, чтобы поместить canvas вверху */
+    border: 1px solid #000;
+    cursor: crosshair;
 }
-
-.scrollToTopButton {
-    padding: 10px 20px;
-    font-size: 14px;
-    color: #fff;
-    background-color: #000;
-    border: none; /* Убираем стандартную рамку */
-    border-radius: 5px; /* Скругление углов для современного вида */
-    cursor: pointer; /* Изменение курсора при наведении для индикации кликабельности */
-    transition: background-color 0.3s; /* Плавное изменение цвета при наведении */
-    margin-top: 20px; /* Отступ сверху от canvas */
-    display: none; /* Изначально скрыта, появляется только при необходимости */
-}
-
-.scrollToTopButton:hover {
-    background-color: #333; /* Затемнение фона при наведении для визуального отклика */
